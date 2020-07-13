@@ -2,6 +2,7 @@ exports.config = {
   allScriptsTimeout: 11000,
   specs: ['./src/features/**/*.feature'],
   capabilities: {
+    shardTestFiles: true,
     browserName: 'chrome'
   },
   directConnect: true,
@@ -9,6 +10,7 @@ exports.config = {
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   cucumberOpts: {
+    format: 'json:./reports/cucumber-results.json',
     require: ['./src/steps/**/*.steps.ts']
   },
   onPrepare() {
