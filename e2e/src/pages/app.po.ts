@@ -2,7 +2,7 @@ import { browser, by, element } from 'protractor';
 
 export class AppPage {
   navigateTo(): Promise<unknown> {
-    return browser.get(process.env.APP_URL || 'http://localhost:4200') as Promise<unknown>;
+    return browser.get(process.env.E2E_TEST_ROUTE || 'http://localhost:4200') as Promise<unknown>;
   }
 
   getTitleText(): Promise<string> {
