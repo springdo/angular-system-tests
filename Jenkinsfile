@@ -42,21 +42,32 @@ pipeline {
                 // sh './seed-backend.sh'
 
                 echo '### Running systems tests ###'
-                sh 'npm run e2e:system'
+                sh 'npm run e2e:ci'
             }
             post {
                 always {
-                    archiveArtifacts "**"
-                    junit 'reports/e2e/*.xml'
                     // publish html
                     publishHTML target: [
-                        allowMissing: true,
+                        allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
-                        reportDir: 'reports/e2e',
-                        reportFiles: 'chrome-*.html,firefox-*.html',
-                        reportName: 'E2E Test Reports'
+                        reportDir: 'reports/',
+                        reportFiles: 'index.html',
+                        reportName: 'System Test Report'
                     ]
+                    // https://github.com/jenkinsci/cucumber-reports-plugin#automated-configuration
+                    cucumber buildStatus: 'UNSTABLE',
+                        failedFeaturesNumber: 1,
+                        failedScenariosNumber: 1,
+                        skippedStepsNumber: 1,
+                        failedStepsNumber: 1,
+                        reportTitle: 'System Test report',
+                        fileIncludePattern: 'reports/json-output-folder/*.json',
+                        sortingMethod: 'ALPHABETICAL',
+                        trendsLimit: 100
+                }
+                success {
+                    sh 'echo TODO - trigger argo to sync in staging'
                 }
             }
         }

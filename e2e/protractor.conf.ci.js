@@ -5,7 +5,8 @@ const overRideConfig = {
   seleniumAddress: 'http://uj-zalenium-testy-mctestface.apps.s44.core.rht-labs.com/wd/hub',
   baseUrl: `http://${process.env.E2E_TEST_ROUTE}/`,
   directConnect: false,
-  multiCapabilities: [{
+  multiCapabilities: [
+    {
       browserName: 'chrome',
       chromeOptions: {
         args: ['--window-size=1280x800', '--headless', '--disable-gpu', '--no-sandbox'],
@@ -15,6 +16,18 @@ const overRideConfig = {
       browserName: 'firefox',
       'moz:firefoxOptions': {
         args: ['--headless', '--window-size=1280,800', '--width=1280', '--height=800'],
+      },
+    },
+  ],
+  // Here the magic happens
+  plugins: [
+    {
+      package: 'protractor-multiple-cucumber-html-reporter-plugin',
+      options: {
+        // read the options part for more options
+        automaticallyGenerateReport: true,
+        removeExistingJsonReportFile: true,
+        reportPath: './reports/',
       },
     },
   ],
