@@ -56,6 +56,8 @@ pipeline {
                         reportFiles: 'index.html',
                         reportName: 'System Test Report'
                     ]
+                    // 
+                    cucumber 'reports/json-output-folder/*.json'
                     // https://github.com/jenkinsci/cucumber-reports-plugin#automated-configuration
                     cucumber buildStatus: 'UNSTABLE',
                         failedFeaturesNumber: 1,
