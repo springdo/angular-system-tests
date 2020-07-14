@@ -8,6 +8,7 @@ pipeline {
         // GLobal Vars
         APP_NAME = "lxp"
         JENKINS_TAG = "master"
+        PROJECT_NAMESPACE = "labs-test"
     }
 
     // The options directive is for configuration that applies to the whole job.

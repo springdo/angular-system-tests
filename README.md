@@ -23,4 +23,4 @@ npm run e2e:ci
 ```
 
 ## 📰Reporting
-A Cucubmber JSON report for consumption in CI is located in `./reports/` along with a HTML report supporting multiple browsers out of the box `./reports/index.html` 
+A Cucubmber JSON report for consumption in CI is located in `./reports/` along with a HTML report supporting multiple browsers out of the box `./reports/index.html`
