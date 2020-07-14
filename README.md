@@ -15,12 +15,14 @@ You can run `npm run e2e:headless` if you don't want the browser popping up anno
 helm repo add zalenium-github https://raw.githubusercontent.com/zalando/zalenium/master/charts/zalenium
 helm install uj --namespace testy-mctestface zalenium-github/zalenium --set hub.openshift.route.enabled=true
 ```
-2. Export the endpoint to be tested and run the tests pointing to your grid
+2. Export the endpoint to be tested and run the tests pointing to your grid. If running in Jenkins on OpenShift, and Zalenium is in the same project you can skip setting `ZALENIUM_SERVICE_HOST`.
 ```bash
-export ZALENIUM_ROUTE=(oc get routes uj-zalenium -n testy-mctestface -o jsonpath='{.spec.host}')
+export ZALENIUM_SERVICE_HOST=(oc get routes uj-zalenium -n testy-mctestface -o jsonpath='{.spec.host}')
 export E2E_TEST_ROUTE=https://my-app.example.com
 npm run e2e:ci
 ```
+
+For a working example using Jenkins, see the Jenkinsfile in the root of this project
 
 ## 📰Reporting
 A Cucubmber JSON report for consumption in CI is located in `./reports/` along with a HTML report supporting multiple browsers out of the box `./reports/index.html`
