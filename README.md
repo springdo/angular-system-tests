@@ -4,7 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## 🏃‍♂️Running end-to-end tests locally
 
-Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). You can run `npm run e2e:headless` if you don't want the browser popping up.
+Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). Defaults to looking for an angular app on `http://localhost:4200` but you can over write this by setting `export E2E_TEST_ROUTE=http://my-app.example.com` prior to execution.
+
+You can run `npm run e2e:headless` if you don't want the browser popping up annoying you 🤗.
 
 
 ## 🏃‍♀️Running end-to-end tests against Selenium Grid
@@ -16,7 +18,7 @@ helm install uj --namespace testy-mctestface zalenium-github/zalenium --set hub.
 2. Export the endpoint to be tested and run the tests pointing to your grid
 ```bash
 export ZALENIUM_ROUTE=(oc get routes uj-zalenium -n testy-mctestface -o jsonpath='{.spec.host}')
-export E2E_TEST_ROUTE=my-app.example.com
+export E2E_TEST_ROUTE=https://my-app.example.com
 npm run e2e:ci
 ```
 
