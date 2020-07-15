@@ -8,7 +8,7 @@ pipeline {
         // GLobal Vars
         APP_NAME = "learning-experience-platform"
         JENKINS_TAG = "master"
-        PROJECT_NAMESPACE = "labs-test"
+        PROJECT_NAMESPACE = "my-test"
 
         // Config repo managed by ArgoCD details
         ARGOCD_CONFIG_REPO = "github.com/who-lxp/lxp-config.git"
@@ -24,7 +24,6 @@ pipeline {
     }
 
     stages {
-
         stage("system tests") {
             agent {
                 node {
