@@ -14,6 +14,9 @@ pipeline {
         ARGOCD_CONFIG_REPO = "github.com/who-lxp/lxp-config.git"
         ARGOCD_CONFIG_REPO_PATH = "lxp-deployment/values-test.yaml"
         ARGOCD_CONFIG_REPO_BRANCH = "master"
+
+        // Credentials bound in OpenShift
+        GIT_CREDS = credentials("${OPENSHIFT_BUILD_NAMESPACE}-git-auth")
     }
 
     // The options directive is for configuration that applies to the whole job.
