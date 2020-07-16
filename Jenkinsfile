@@ -1,12 +1,14 @@
 pipeline {
-
     agent {
-        // label "" also could have been 'agent any' - that has the same meaning.
         label "master"
     }
     environment {
+        // JOB TAKES TWO PARAMS:
+        // APP_NAME: to know what app to update in git if successful
+        // VERSION: the version to pin the app to in git
+
         // GLobal Vars
-        APP_NAME = "learning-experience-platform"
+        E2E_APP_NAME = "learning-experience-platform"
         JENKINS_TAG = "master"
         PROJECT_NAMESPACE = "my-test"
 
@@ -37,7 +39,7 @@ pipeline {
                 echo '### set env to test against ###'
                 script {
                     // TODO - Check if i can just use Zalenium service route....?
-                    env.E2E_TEST_ROUTE = "oc get route/test-${APP_NAME} --template='{{.spec.host}}' -n ${PROJECT_NAMESPACE}".execute().text.minus("'").minus("'")
+                    env.E2E_TEST_ROUTE = "oc get route/test-${E2E_APP_NAME} --template='{{.spec.host}}' -n ${PROJECT_NAMESPACE}".execute().text.minus("'").minus("'")
                 }
 
                 echo '### checkout correct revision ###'
@@ -86,7 +88,7 @@ pipeline {
         }
 
 
-        stage("Promote app to Staging") {
+        stage("Promote to Staging") {
             agent {
                 node {
                     label "jenkins-slave-argocd"
