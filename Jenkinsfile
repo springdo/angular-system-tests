@@ -14,7 +14,7 @@ pipeline {
 
         // Config repo managed by ArgoCD details
         ARGOCD_CONFIG_REPO = "github.com/who-lxp/lxp-config.git"
-        ARGOCD_CONFIG_REPO_PATH = "lxp-deployment/values-test.yaml"
+        ARGOCD_CONFIG_REPO_PATH = "lxp-deployment/values-staging.yaml"
         ARGOCD_CONFIG_REPO_BRANCH = "master"
 
         // Credentials bound in OpenShift
