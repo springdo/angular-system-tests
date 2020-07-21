@@ -10,7 +10,7 @@ pipeline {
         // GLobal Vars
         E2E_APP_NAME = "learning-experience-platform"
         JENKINS_TAG = "master"
-        PROJECT_NAMESPACE = "my-test"
+        PROJECT_NAMESPACE = "labs-test"
 
         // Config repo managed by ArgoCD details
         ARGOCD_CONFIG_REPO = "github.com/who-lxp/lxp-config.git"
@@ -80,9 +80,6 @@ pipeline {
                         fileIncludePattern: 'reports/json-output-folder/*.json',
                         sortingMethod: 'ALPHABETICAL',
                         trendsLimit: 100
-                }
-                success {
-                    sh 'echo TODO - trigger argo to sync in staging'
                 }
             }
         }
